@@ -10,13 +10,6 @@ namespace IdentityProject.IdentityServer.Config
             return new List<ApiResource>
             {
                 new ApiResource("api1", "My API")
-                {
-                    Scopes = new List<Scope>()
-                    {
-                        new Scope()
-                        { }
-                    }
-                }
             };
         }
     }
