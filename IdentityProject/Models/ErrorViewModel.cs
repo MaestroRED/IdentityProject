@@ -1,5 +1,3 @@
-using System;
-
 namespace IdentityProject.Models
 {
     public class ErrorViewModel
