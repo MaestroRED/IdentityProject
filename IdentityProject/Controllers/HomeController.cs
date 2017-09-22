@@ -1,6 +1,7 @@
 ﻿using System.Diagnostics;
 using Microsoft.AspNetCore.Mvc;
 using IdentityProject.Models;
+using Microsoft.AspNetCore.Authorization;
 
 namespace IdentityProject.Controllers
 {
@@ -18,6 +19,7 @@ namespace IdentityProject.Controllers
             return View();
         }
 
+        [Authorize]
         public IActionResult Contact()
         {
             ViewData["Message"] = "Your contact page.";
