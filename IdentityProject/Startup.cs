@@ -33,6 +33,7 @@ namespace IdentityProject
                 .AddOpenIdConnect(options =>
                 {
                     options.SignInScheme = CookieAuthenticationDefaults.AuthenticationScheme; // cookie middle setup above
+                    options.SignOutScheme = CookieAuthenticationDefaults.AuthenticationScheme; // cookie middle setup above
                     options.Authority = "http://localhost:5000/";
                     options.ClientId = "mvc";
                     options.ClientSecret = "secret";
