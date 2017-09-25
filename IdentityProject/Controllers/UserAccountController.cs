@@ -10,30 +10,9 @@ namespace IdentityProject.Controllers
     public class UserAccountController : Controller
     {
         [HttpGet]
-        public IActionResult Login(string returnurl = null)
+        public IActionResult Login()
         {
-            ViewData["ReturnURL"] = returnurl;
-            return View();
-        }
-
-        [HttpPost]
-        public async Task<IActionResult> Login(LoginViewModel loginViewModel, string returnurl = null)
-        {
-            ViewData["ReturnURL"] = returnurl;
-
-            if (ModelState.IsValid)
-            {
-                var disco = await DiscoveryClient.GetAsync("http://localhost:5000");
-                var tokenClient = new TokenClient(disco.TokenEndpoint, "resourceOwner", "secret");
-                var tokenResponse = await tokenClient.RequestResourceOwnerPasswordAsync(loginViewModel.Username, loginViewModel.Password, "api1");
-
-                if (tokenResponse.IsError)
-                {
-                    ModelState.AddModelError(string.Empty, tokenResponse.ErrorDescription);
-                }
-            }
-
-            return View(loginViewModel);
+            return RedirectToAction("Index", "Home");
         }
 
         public IActionResult Logout()

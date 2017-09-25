@@ -1,7 +1,5 @@
-﻿using System;
-using System.IdentityModel.Tokens.Jwt;
-using System.Threading.Tasks;
-using IdentityModel;
+﻿using System.IdentityModel.Tokens.Jwt;
+using IdentityProject.Services;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Authentication.OpenIdConnect;
 using Microsoft.AspNetCore.Builder;
@@ -9,7 +7,6 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
-using Microsoft.IdentityModel.Tokens;
 
 namespace IdentityProject
 {
@@ -58,13 +55,14 @@ namespace IdentityProject
 
         private void AddServices(IServiceCollection services)
         {
-            //services.AddTransient<IIdentityService, IdentityService>();
+            services.AddTransient<IApiService, ApiService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory)
         {
-            loggerFactory.AddConsole(LogLevel.Trace);
+            loggerFactory.AddConsole(LogLevel.Debug);
+            loggerFactory.AddDebug();
 
             app.UseDeveloperExceptionPage();
             app.UseAuthentication();
